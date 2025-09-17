@@ -39,7 +39,7 @@ pushd "$TBB_SOURCE_DIR"
                 opts="$(remove_switch /D_UNICODE $opts)"
                 plainopts="$(remove_switch /GR $(remove_cxxstd $opts))"
 
-                cmake -G "$AUTOBUILD_WIN_CMAKE_GEN" -A "$AUTOBUILD_WIN_VSPLATFORM" .. -DTBB_TEST=OFF \
+                cmake -G "$AUTOBUILD_WIN_CMAKE_GEN" -A "$AUTOBUILD_WIN_VSPLATFORM" .. -DTBB_TEST=OFF -DTBB_STRICT=OFF \
                         -DCMAKE_CONFIGURATION_TYPES="Debug" \
                         -DCMAKE_C_FLAGS_DEBUG="$plainopts" \
                         -DCMAKE_CXX_FLAGS_DEBUG="$opts /EHsc" \
@@ -64,7 +64,7 @@ pushd "$TBB_SOURCE_DIR"
                 opts="$(remove_switch /D_UNICODE $opts)"
                 plainopts="$(remove_switch /GR $(remove_cxxstd $opts))"
 
-                cmake -G "$AUTOBUILD_WIN_CMAKE_GEN" -A "$AUTOBUILD_WIN_VSPLATFORM" .. -DTBB_TEST=OFF \
+                cmake -G "$AUTOBUILD_WIN_CMAKE_GEN" -A "$AUTOBUILD_WIN_VSPLATFORM" .. -DTBB_TEST=OFF -DTBB_STRICT=OFF \
                         -DCMAKE_CONFIGURATION_TYPES="Release" \
                         -DCMAKE_C_FLAGS="$plainopts" \
                         -DCMAKE_CXX_FLAGS="$opts /EHsc" \
@@ -97,7 +97,7 @@ pushd "$TBB_SOURCE_DIR"
                 pushd "build_$arch"
                     CFLAGS="$cc_opts" \
                     LDFLAGS="$ld_opts" \
-                    cmake .. -G "Xcode" -DTBB_TEST=OFF \
+                    cmake .. -G "Xcode" -DTBB_TEST=OFF -DTBB_STRICT=OFF \
                         -DCMAKE_CONFIGURATION_TYPES="Release" \
                         -DCMAKE_C_FLAGS="$cc_opts" \
                         -DCMAKE_CXX_FLAGS="$cc_opts" \
@@ -128,7 +128,7 @@ pushd "$TBB_SOURCE_DIR"
             # Release
             mkdir -p "build"
             pushd "build"
-                cmake .. -GNinja -DTBB_TEST=OFF \
+                cmake .. -GNinja -DTBB_TEST=OFF -DTBB_STRICT=OFF \
                     -DCMAKE_BUILD_TYPE="Release" \
                     -DCMAKE_C_FLAGS="$(remove_cxxstd $opts)" \
                     -DCMAKE_CXX_FLAGS="$opts" \
