@@ -117,7 +117,11 @@ pushd "$TBB_SOURCE_DIR"
                 popd
             done
 
-            lipo -create -output "$stage/lib/release/libz.a" "$stage/lib/release/x86_64/libz.a" "$stage/lib/release/arm64/libz.a"
+            cp -a $stage/lib/release/x86_64/*.dylib $stage/lib/release/
+
+            lipo -create -output "$stage/lib/release/libtbb.12.16.dylib" "$stage/lib/release/x86_64/libtbb.12.16.dylib" "$stage/lib/release/arm64/libtbb.12.16.dylib"
+            lipo -create -output "$stage/lib/release/libtbbmalloc_proxy.2.16.dylib" "$stage/lib/release/x86_64/libtbbmalloc_proxy.2.16.dylib" "$stage/lib/release/arm64/libtbbmalloc_proxy.2.16.dylib"
+            lipo -create -output "$stage/lib/release/libtbbmalloc.2.16.dylib" "$stage/lib/release/x86_64/libtbbmalloc.2.16.dylib" "$stage/lib/release/arm64/libtbbmalloc.2.16.dylib"
         ;;
 
         # -------------------------- linux, linux64 --------------------------
